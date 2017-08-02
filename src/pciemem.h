@@ -7,7 +7,7 @@
 
 #define PLX_VENDOR_ID 0x0525
 #define PLX_PRODUCT_ID 0x3380
-#define PLX_DEVICE_NAME "usbmem"
+#define PLX_DEVICE_NAME "pciemem"
 
 /* USB part */
 #define PLX_PCI_ENDPOINT 0xe
@@ -81,19 +81,19 @@ static struct usb_driver plx_driver = {
 	.supports_autosuspend = 1,
 };
 
-static ssize_t usbmem_read(struct file *, char *, size_t, loff_t *);
-static ssize_t usbmem_write(struct file *, const char *, size_t, loff_t *);
-static int usbmem_open(struct inode *, struct file *);
-static int usbmem_release(struct inode *, struct file *);
-static int usbmem_flush(struct file *file, fl_owner_t id);
+static ssize_t pciemem_read(struct file *, char *, size_t, loff_t *);
+static ssize_t pciemem_write(struct file *, const char *, size_t, loff_t *);
+static int pciemem_open(struct inode *, struct file *);
+static int pciemem_release(struct inode *, struct file *);
+static int pciemem_flush(struct file *file, fl_owner_t id);
 
 static struct file_operations fops = {
 	.owner = THIS_MODULE,
-  .read = usbmem_read,
-  .write = usbmem_write,
-  .open = usbmem_open,
-  .release = usbmem_release,
-	.flush =	usbmem_flush,
+  .read = pciemem_read,
+  .write = pciemem_write,
+  .open = pciemem_open,
+  .release = pciemem_release,
+	.flush =	pciemem_flush,
 	.llseek =	generic_file_llseek,
 };
 

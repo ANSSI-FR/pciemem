@@ -1,5 +1,5 @@
 #include <linux/module.h>
-#include "usbmem.h"
+#include "pciemem.h"
 
 MODULE_LICENSE("GPL");
 
@@ -15,13 +15,13 @@ static void plx_delete(struct kref *kref)
 	kfree(dev);
 }
 
-static int usbmem_open(struct inode *inode, struct file *file)
+static int pciemem_open(struct inode *inode, struct file *file)
 {
 	struct usb_plx *dev;
 	struct usb_interface *interface;
 	int subminor;
 	int retval = 0;
-	pr_debug("open usbmem\n");
+	pr_debug("open pciemem\n");
 
 	subminor = iminor(inode);
 
@@ -49,13 +49,13 @@ static int usbmem_open(struct inode *inode, struct file *file)
 	/* save our object in the file's private structure */
 	file->private_data = dev;
 
-	pr_debug("opened usbmem\n");
+	pr_debug("opened pciemem\n");
 
 exit:
 	return retval;
 }
 
-static int usbmem_release(struct inode *inode, struct file *file)
+static int pciemem_release(struct inode *inode, struct file *file)
 {
 	struct usb_plx *dev;
 
@@ -72,11 +72,11 @@ static int usbmem_release(struct inode *inode, struct file *file)
 	/* decrement the count on our device */
 	kref_put(&dev->kref, plx_delete);
 
-	pr_debug("released usbmem\n");
+	pr_debug("released pciemem\n");
 	return 0;
 }
 
-static int usbmem_flush(struct file *file, fl_owner_t id)
+static int pciemem_flush(struct file *file, fl_owner_t id)
 {
 	struct usb_plx *dev;
 	int res;
@@ -318,7 +318,7 @@ static int dma_writebuf(struct usb_plx *dev, const uint32_t dmaaddr, unsigned ch
 	return ret;
 }
 
-static ssize_t usbmem_read(struct file *file, char *buffer, size_t count,
+static ssize_t pciemem_read(struct file *file, char *buffer, size_t count,
 			 loff_t *ppos)
 {
 	struct usb_plx *dev;
@@ -344,7 +344,7 @@ static ssize_t usbmem_read(struct file *file, char *buffer, size_t count,
 	return rv;
 }
 
-static ssize_t usbmem_write(struct file *file, const char *user_buffer,
+static ssize_t pciemem_write(struct file *file, const char *user_buffer,
 			  size_t count, loff_t *ppos)
 {
 	struct usb_plx *dev;
@@ -472,7 +472,7 @@ static int plx_probe(struct usb_interface *interface,
 
 	/* let the user know what node this device is now attached to */
 	dev_info(&interface->dev,
-		 "PLX device now attached to usbmem-%d",
+		 "PLX device now attached to pciemem-%d",
 		 interface->minor);
 	return 0;
 
@@ -504,7 +504,7 @@ static void plx_disconnect(struct usb_interface *interface)
 	/* decrement our usage count */
 	kref_put(&dev->kref, plx_delete);
 
-	dev_info(&interface->dev, "usbmem #%d now disconnected", minor);
+	dev_info(&interface->dev, "pciemem #%d now disconnected", minor);
 }
 
 static void plx_draw_down(struct usb_plx *dev)
