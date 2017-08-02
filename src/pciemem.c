@@ -1,6 +1,19 @@
 #include <linux/module.h>
 #include "pciemem.h"
 
+/* © 2016-2017 ANSSI
+ * Yves-Alexis Perez <yves-alexis.perez@ssi.gouv.fr>
+ *
+ * This kernel module is heavily based on Greg KH usb-skeleton.c USB module
+ *
+ * It should be used with an USB3380 based board, in order to access the
+ * physical memory of a machine under test (T). This kernel module is to be loaded
+ * on the analysis machine (A). The USB3380 board should be inserted on a PCI
+ * slot on machine T, and a USB cable should be plugged between USB3380 and
+ * machine A.
+ *
+ */
+
 MODULE_LICENSE("GPL");
 
 /* USB part */
