@@ -464,9 +464,10 @@ static int plx_probe(struct usb_interface *interface,
 			"Could not find both bulk-in and bulk-out endpoints\n");
 		goto error;
 	}
-	pr_debug("DMA endpoints: 0x%x/0x%x - 0x%x/0x%x\n",
+	pr_debug("DMA endpoints: 0x%x/0x%x\n",
 		 dev->bulk_in_endpointAddr,
-		 dev->bulk_out_endpointAddr,
+		 dev->bulk_out_endpointAddr);
+	pr_debug("CSR endpoints: 0x%x/0x%x\n",
 		 dev->csr_in_endpointAddr,
 		 dev->csr_out_endpointAddr);
 
