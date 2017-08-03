@@ -316,7 +316,7 @@ static int dma_writebuf(struct usb_plx *dev, const uint32_t dmaaddr, unsigned ch
 
 	if (ret != 0 || tlen != count)
 	{
-		pr_warn("DMA in transfer failed (ret=%d, tlen=%d, dmaaddr=0x%x)", ret, tlen, dmaaddr);
+		pr_warn("DMA out transfer failed (ret=%d, tlen=%d, dmaaddr=0x%x)", ret, tlen, dmaaddr);
 
 		//readreg(dev, REG_GPEP1_RSP, &tmp);
 		//if (tmp & BIT(CLEAR_ENDPOINT_TOGGLE))
