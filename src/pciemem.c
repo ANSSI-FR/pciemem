@@ -486,7 +486,7 @@ static int plx_probe(struct usb_interface *interface,
 
 	/* let the user know what node this device is now attached to */
 	dev_info(&interface->dev,
-		 "PLX device now attached to pciemem-%d",
+		 "PLX device now attached to /dev/pciemem%d",
 		 interface->minor);
 	return 0;
 
