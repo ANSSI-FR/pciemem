@@ -14,7 +14,7 @@
 #define PLX_CSR_ENDPOINT 0xd
 #define PLX_DMA_ENDPOINT 0x2
 
-/* General Puropose Endpoint registers */
+/* General Purpose Endpoint registers */
 #define REG_GPEP0_CFG		0x320
 #define REG_GPEP0_RSP		0x324 // CHECK!
 #define REG_GPEP0_STAT	0x32c
