@@ -1,5 +1,7 @@
 # README
 
+[![img](https://img.shields.io/badge/code.gouv.fr-ouvert-mediumseagreen.svg)](https://code.gouv.fr/documentation/#quels-degres-douverture-pour-les-codes-sources)
+
 ## Introduction
 
 The main code in this repository is a kernel module intended to communicate
