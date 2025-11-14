@@ -23,10 +23,11 @@ machine under test.
 
 See also [PCIleech](https://github.com/ufrisk/pcileech) from Ulf Frisk.
 
-PCIemem is licensed under the [GPL-2 license](LICENSE) since it's a Linux
+PCIemem is licensed under the [GPL-2 license](LICENSE-GPL-2.0) since it's a Linux
 kernel module.
 
 ## uflash
 
 uflash is a userland tool used to read or flash the EEPROM on a PCI connected
-USB 3380. It is licensed under the [MIT license](uflash/LICENSE).
+USB 3380. It is licensed under the [Apache license version
+2.0](LICENSE-Apache-2.0).
